@@ -26,7 +26,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       }
     };
     window.addEventListener("storage", sync);
-    return () => window.removeEventListener("storage", sync);
+    return () => {
+      window.removeEventListener("storage", sync);
+    };
   }, []);
   const toggle = () => {
     const next = theme === "dark" ? "light" : "dark";
@@ -63,7 +65,7 @@ export function ThemeToggle({ iconOnly = false }: { iconOnly?: boolean }) {
       size={iconOnly ? "icon" : "sm"}
       className={
         iconOnly
-          ? "h-9 w-9 shrink-0 rounded-lg"
+          ? "h-11 w-11 shrink-0 rounded-lg"
           : "w-full justify-start gap-2 text-muted-foreground hover:text-foreground"
       }
       disabled={!ready}

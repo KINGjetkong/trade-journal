@@ -17,6 +17,7 @@ export interface InsertResult {
 }
 
 export type ExecutionSource = "sync" | "import" | "manual";
+type TaggedExecution = ImportedExecution & { tags?: string[] };
 
 const MAX_SKIP_REASONS = 5;
 
@@ -36,8 +37,20 @@ export const executionProblem = (row: unknown, source: ExecutionSource): string 
   if (typeof r.executedAt !== "string" || !Number.isFinite(Date.parse(r.executedAt)))
     return `${label}: timestamp is missing or invalid.`;
   const meta = r.importMetadata;
+  const manualMetaOk =
+    source === "manual" &&
+    typeof meta?.id === "string" &&
+    meta.id.length > 0 &&
+    meta.id.length <= 2000 &&
+    typeof meta.group === "string" &&
+    meta.group.length > 0 &&
+    meta.group.length <= 2000 &&
+    Number.isSafeInteger(meta.order) &&
+    meta.order >= 0 &&
+    typeof meta.preserveFee === "boolean";
   const metaOk =
     !meta ||
+    manualMetaOk ||
     (source === "import" &&
       typeof meta.id === "string" &&
       meta.id.length > 0 &&
@@ -86,7 +99,7 @@ export const partitionExecutions = (
 /** Insert fills, rebuild trades, and attach optional manual notes in one transaction. */
 export const insertExecutions = (
   accountId: string,
-  rows: ImportedExecution[],
+  rows: TaggedExecution[],
   source: ExecutionSource,
   manualNotes?: string,
   options: { preserveFees?: boolean } = {},
@@ -110,6 +123,11 @@ export const insertExecutions = (
   const createdAt = nowIso();
   const defaults = getJournalDefaults();
   const note = manualNotes?.trim() ? manualNotes : undefined;
+  const tagsByHash = new Map<string, string[]>();
+  for (const row of usable as TaggedExecution[]) {
+    const tags = Array.isArray(row.tags) ? row.tags.filter((tag) => typeof tag === "string") : [];
+    if (tags.length) tagsByHash.set(executionHash(row), tags);
+  }
 
   db.transaction((tx) => {
     if (source === "import") {
@@ -179,6 +197,31 @@ export const insertExecutions = (
       }
     }
     if (inserted > 0) rebuildAccount(accountId);
+    if (tagsByHash.size) {
+      const idsByHash = new Map(
+        tx.select({ id: executions.id, hash: executions.contentHash })
+          .from(executions)
+          .where(eq(executions.accountId, accountId))
+          .all()
+          .map((row) => [row.hash, row.id]),
+      );
+      const tagsByExecutionId = new Map<string, string[]>();
+      for (const [hash, tags] of tagsByHash) {
+        const id = idsByHash.get(hash);
+        if (id) tagsByExecutionId.set(id, tags);
+      }
+      for (const trade of tx.select({
+        key: trades.key,
+        tagsJson: trades.tagsJson,
+        executionIdsJson: trades.executionIdsJson,
+      }).from(trades).where(eq(trades.accountId, accountId)).all()) {
+        const tags = new Set<string>(trade.tagsJson ? JSON.parse(trade.tagsJson) as string[] : []);
+        for (const id of JSON.parse(trade.executionIdsJson) as string[])
+          for (const tag of tagsByExecutionId.get(id) ?? []) tags.add(tag);
+        if (tags.size)
+          tx.update(trades).set({ tagsJson: JSON.stringify([...tags]) }).where(eq(trades.key, trade.key)).run();
+      }
+    }
     if (note) {
       const affected = tx
         .select({

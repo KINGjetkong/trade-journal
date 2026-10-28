@@ -10,35 +10,35 @@
  */
 :root {
   color-scheme: light;
-  --background: #f9f9f7;
-  --foreground: #0b0b0b;
-  --card: #fcfcfb;
-  --card-foreground: #0b0b0b;
-  --popover: #fcfcfb;
-  --popover-foreground: #0b0b0b;
-  --primary: #16161a;
-  --primary-foreground: #fafafa;
-  --secondary: #f0efec;
-  --secondary-foreground: #16161a;
-  --muted: #f0efec;
-  --muted-foreground: #52514e;
-  --accent: #f0efec;
-  --accent-foreground: #16161a;
+  --background: #fcfcfb;
+  --foreground: #1c1a18;
+  --card: #f8f8f7;
+  --card-foreground: #1c1a18;
+  --popover: #f8f8f7;
+  --popover-foreground: #1c1a18;
+  --primary: #ff4801;
+  --primary-foreground: #1c1a18;
+  --primary-hover: #e03f00;
+  --secondary: #f3f3f1;
+  --secondary-foreground: #1c1a18;
+  --muted: #f3f3f1;
+  --muted-foreground: #575552;
+  --accent: #ff4801;
+  --accent-foreground: #1c1a18;
   --destructive: #d03b3b;
   --destructive-foreground: #fafafa;
-  --border: #e1e0d9;
-  --input: #e1e0d9;
-  --ring: #0b7cbd;
+  --border: #e8e7e4;
+  --input: #e8e7e4;
+  --ring: #ff4801;
   --radius: 0.5rem;
 
-  /* Brand accent (LuxAlgo blue): never the sole carrier of information. */
-  --brand: #0b7cbd;
+  --brand: #ff4801;
+  --brand-hover: #e03f00;
 
-  /* viz tokens (validated: see docs/design.md) */
-  --viz-surface: #fcfcfb;
-  --ink-muted: #686760;
-  --gridline: #e1e0d9;
-  --baseline: #c3c2b7;
+  --viz-surface: #f8f8f7;
+  --ink-muted: #575552;
+  --gridline: #e8e7e4;
+  --baseline: #c4c2bd;
   --profit: #006300;
   --profit-fill: #0ca30c;
   --loss: #d03b3b;
@@ -55,36 +55,38 @@
 
 .dark {
   color-scheme: dark;
-  --background: #08080a;
-  --foreground: #f4f4f4;
-  --card: #101013;
-  --card-foreground: #f4f4f4;
-  --popover: #131317;
-  --popover-foreground: #f4f4f4;
-  --primary: #ececec;
-  --primary-foreground: #131316;
-  --secondary: #1b1b20;
-  --secondary-foreground: #f4f4f4;
-  --muted: #17171b;
-  --muted-foreground: #9c9ca6;
-  --accent: #1b1b20;
-  --accent-foreground: #f4f4f4;
-  --destructive: #d03b3b;
+  --background: #7a8184;
+  --foreground: #0f1214;
+  --card: #a1a9ab;
+  --card-foreground: #0f1214;
+  --popover: #a1a9ab;
+  --popover-foreground: #0f1214;
+  --primary: #ff4801;
+  --primary-foreground: #1c1a18;
+  --primary-hover: #e03f00;
+  --secondary: #8e9598;
+  --secondary-foreground: #0f1214;
+  --muted: #8e9598;
+  --muted-foreground: #22282b;
+  --accent: #ff4801;
+  --accent-foreground: #1c1a18;
+  --destructive: #8f1d1d;
   --destructive-foreground: #fafafa;
-  --border: #222228;
-  --input: #26262c;
-  --ring: #1197e2;
+  --border: #687073;
+  --input: #687073;
+  --ring: #ff4801;
 
-  --brand: #1197e2;
+  --brand: #ff4801;
+  --brand-hover: #e03f00;
 
-  --viz-surface: #101013;
-  --ink-muted: #8b8b95;
-  --gridline: #1e1e24;
-  --baseline: #30303a;
-  --profit: #0ca30c;
+  --viz-surface: #a1a9ab;
+  --ink-muted: #22282b;
+  --gridline: #687073;
+  --baseline: #5a6164;
+  --profit: #0b5a2e;
   --profit-fill: #0ca30c;
-  --loss: #d03b3b;
-  --neutral-mid: #383835;
+  --loss: #8f1d1d;
+  --neutral-mid: #6a7174;
   --series-1: #3987e5;
   --series-2: #d95926;
   --series-3: #199e70;
@@ -115,6 +117,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-primary-hover: var(--primary-hover);
   --color-profit: var(--profit);
   --color-loss: var(--loss);
   --color-brand: var(--brand);
@@ -122,7 +125,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-sans: var(--font-sans, system-ui, -apple-system, "Segoe UI", sans-serif);
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: Anton, Oswald, Impact, "Arial Narrow", sans-serif;
 }
 
 @layer base {
@@ -131,7 +135,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   }
+  h1, h2, h3 { font-family: Anton, Oswald, Impact, "Arial Narrow", sans-serif; }
   ::selection {
     @apply bg-primary/20;
   }
@@ -367,7 +373,7 @@ body.dashboard-is-dragging .journal-hover-card {
 .journal-sidebar-home {
   width: 100%;
   overflow: hidden;
-  padding-inline: 1rem;
+  padding-inline: 0.75rem;
   transition: padding 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .journal-sidebar-brand-label,
@@ -1424,4 +1430,59 @@ body.dashboard-is-dragging * {
 .journal-markdown img {
   max-width: 100%;
   border-radius: 6px;
+}
+
+html,
+body {
+  min-height: 100%;
+  min-width: 0;
+}
+body {
+  box-sizing: border-box;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  overscroll-behavior-y: contain;
+  -webkit-tap-highlight-color: transparent;
+}
+.journal-shell,
+.journal-main {
+  min-width: 0;
+}
+.journal-mobile-header {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+.journal-nav-drawer {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+:where(nav, footer, [role="contentinfo"])[class*="fixed"][class*="bottom"] {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+@media (max-width: 768px) {
+  :is(input, select, textarea) {
+    font-size: max(16px, 1em) !important;
+  }
+}
+@media (pointer: coarse) {
+  :is(nav, [role="navigation"]) :is(a, button) {
+    min-height: 44px;
+  }
+}
+@media (horizontal-viewport-segments: 2) {
+  .journal-shell {
+    display: flex !important;
+  }
+  .journal-desktop-sidebar {
+    display: flex !important;
+    width: env(viewport-segment-width 0 0);
+    flex: 0 0 env(viewport-segment-width 0 0);
+    height: 100dvh;
+    padding-top: env(safe-area-inset-top);
+  }
+  .journal-mobile-header {
+    display: none !important;
+  }
+  .journal-shell > :last-child {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
 }

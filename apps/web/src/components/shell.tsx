@@ -25,7 +25,6 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { LuxAlgoMark } from "@/components/luxalgo-mark";
 import { PrivacyToggle } from "./privacy";
 import { ThemeToggle } from "./theme";
 import { PageTransition } from "./page-transition";
@@ -214,9 +213,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
               aria-describedby={undefined}
             >
               <div className="flex h-14 shrink-0 items-center gap-2.5 border-b px-4">
-                <LuxAlgoMark className="h-[18px] w-5" />
+                <img className="h-[18px] w-5" src="http://127.0.0.1:7790/_madx/madx-mark.svg" alt="" />
                 <DialogPrimitive.Title className="text-sm font-semibold">
-                  Trade Journal
+                  Journal · MADX SIGMA6
                 </DialogPrimitive.Title>
                 <DialogPrimitive.Close asChild>
                   <Button
@@ -241,22 +240,22 @@ export function Shell({ children }: { children: React.ReactNode }) {
           href="/"
           className="mr-auto flex min-w-0 items-center gap-2 text-sm font-semibold tracking-tight"
         >
-          <LuxAlgoMark className="hidden h-4 w-[18px] shrink-0 min-[380px]:block" />
-          <span className="truncate">Trade Journal</span>
+          <img className="hidden h-4 w-4 shrink-0 min-[380px]:block" src="http://127.0.0.1:7790/_madx/madx-mark.svg" alt="" />
+          <span className="truncate">Journal · MADX SIGMA6</span>
         </Link>
         <PrivacyToggle compact />
         <ThemeToggle iconOnly />
       </header>
       <aside
-        className="journal-desktop-sidebar sticky top-0 hidden h-dvh shrink-0 flex-col border-r bg-card/50 lg:flex"
+        className="journal-desktop-sidebar madx-duo-sidebar sticky top-0 hidden h-dvh shrink-0 flex-col border-r bg-card/50 lg:flex"
         data-collapsed={sidebarCollapsed}
         data-ready={sidebarReady}
       >
         <div className="journal-sidebar-header relative flex h-14 shrink-0 items-center border-b">
-          <Link href="/" className="journal-sidebar-home flex h-full min-w-0 items-center gap-2.5">
-            <LuxAlgoMark className="h-[18px] w-5 shrink-0" />
-            <span className="journal-sidebar-brand-label text-sm font-semibold tracking-tight">
-              Trade Journal
+          <Link href="/" className="journal-sidebar-home flex h-full min-w-0 items-center gap-1.5">
+            <img className="h-[18px] w-5 shrink-0" src="http://127.0.0.1:7790/_madx/madx-mark.svg" alt="" />
+            <span className="journal-sidebar-brand-label text-xs font-semibold tracking-tight">
+              Journal · MADX SIGMA6
             </span>
           </Link>
           <Button
