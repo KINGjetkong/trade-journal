@@ -16,24 +16,25 @@
   --card-foreground: #1c1a18;
   --popover: #f8f8f7;
   --popover-foreground: #1c1a18;
-  --primary: #ff4801;
+  --primary: #ff7429;
   --primary-foreground: #1c1a18;
-  --primary-hover: #e03f00;
+  --primary-hover: #f86414;
   --secondary: #f3f3f1;
   --secondary-foreground: #1c1a18;
   --muted: #f3f3f1;
   --muted-foreground: #575552;
-  --accent: #ff4801;
+  --accent: #ff7429;
   --accent-foreground: #1c1a18;
   --destructive: #d03b3b;
   --destructive-foreground: #fafafa;
   --border: #e8e7e4;
   --input: #e8e7e4;
-  --ring: #ff4801;
+  --ring: #ff7429;
   --radius: 0.5rem;
 
-  --brand: #ff4801;
-  --brand-hover: #e03f00;
+  --brand: #ff7429;
+  --brand-hover: #f86414;
+  --brand-ink: #c2410c;
 
   --viz-surface: #f8f8f7;
   --ink-muted: #575552;
@@ -61,23 +62,24 @@
   --card-foreground: #0f1214;
   --popover: #a1a9ab;
   --popover-foreground: #0f1214;
-  --primary: #ff4801;
+  --primary: #ff7429;
   --primary-foreground: #1c1a18;
-  --primary-hover: #e03f00;
+  --primary-hover: #f86414;
   --secondary: #8e9598;
   --secondary-foreground: #0f1214;
   --muted: #8e9598;
   --muted-foreground: #22282b;
-  --accent: #ff4801;
+  --accent: #ff7429;
   --accent-foreground: #1c1a18;
   --destructive: #8f1d1d;
   --destructive-foreground: #fafafa;
   --border: #687073;
   --input: #687073;
-  --ring: #ff4801;
+  --ring: #ff7429;
 
-  --brand: #ff4801;
-  --brand-hover: #e03f00;
+  --brand: #ff7429;
+  --brand-hover: #f86414;
+  --brand-ink: #ff7429;
 
   --viz-surface: #a1a9ab;
   --ink-muted: #22282b;
@@ -1156,7 +1158,7 @@ body.dashboard-is-dragging .journal-hover-card {
   height: 29px;
   border-radius: 10px;
   background: color-mix(in srgb, var(--brand) 12%, var(--popover));
-  color: var(--brand);
+  color: var(--brand-ink);
   transition:
     background 200ms ease,
     color 200ms ease,
@@ -1219,7 +1221,7 @@ body.dashboard-is-dragging .journal-hover-card {
   font-size: 12px;
 }
 .dashboard-customize-empty button {
-  color: var(--brand);
+  color: var(--brand-ink);
   cursor: pointer;
 }
 .dashboard-customize-footer {
