@@ -4,7 +4,7 @@ import { insertExecutions } from "@/server/executions";
 
 interface ManualBody {
   accountId: string;
-  executions: ImportedExecution[];
+  executions: (ImportedExecution & { tags?: string[] })[];
   notes?: string;
 }
 

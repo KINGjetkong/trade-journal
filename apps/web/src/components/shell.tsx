@@ -216,7 +216,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
               <div className="flex h-14 shrink-0 items-center gap-2.5 border-b px-4">
                 <LuxAlgoMark className="h-[18px] w-5" />
                 <DialogPrimitive.Title className="text-sm font-semibold">
-                  Trade Journal
+                  Journal
                 </DialogPrimitive.Title>
                 <DialogPrimitive.Close asChild>
                   <Button
@@ -242,7 +242,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           className="mr-auto flex min-w-0 items-center gap-2 text-sm font-semibold tracking-tight"
         >
           <LuxAlgoMark className="hidden h-4 w-[18px] shrink-0 min-[380px]:block" />
-          <span className="truncate">Trade Journal</span>
+          <span className="truncate">Journal</span>
         </Link>
         <PrivacyToggle compact />
         <ThemeToggle iconOnly />
@@ -256,7 +256,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <Link href="/" className="journal-sidebar-home flex h-full min-w-0 items-center gap-2.5">
             <LuxAlgoMark className="h-[18px] w-5 shrink-0" />
             <span className="journal-sidebar-brand-label text-sm font-semibold tracking-tight">
-              Trade Journal
+              Journal
             </span>
           </Link>
           <Button

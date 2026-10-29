@@ -28,11 +28,11 @@
   --destructive-foreground: #fafafa;
   --border: #e1e0d9;
   --input: #e1e0d9;
-  --ring: #0b7cbd;
+  --ring: #ff4801;
   --radius: 0.5rem;
 
-  /* Brand accent (LuxAlgo blue): never the sole carrier of information. */
-  --brand: #0b7cbd;
+  /* Steal Cloudflare OS kumo orange — Journal is a MADX shell module. */
+  --brand: #ff4801;
 
   /* viz tokens (validated: see docs/design.md) */
   --viz-surface: #fcfcfb;
@@ -54,32 +54,33 @@
 }
 
 .dark {
+  /* Cloudflare OS (Kumo) dark-mode surfaces, matching the shell. */
   color-scheme: dark;
-  --background: #08080a;
-  --foreground: #f4f4f4;
-  --card: #101013;
-  --card-foreground: #f4f4f4;
-  --popover: #131317;
-  --popover-foreground: #f4f4f4;
+  --background: oklch(0.115 0.012 285);
+  --foreground: oklch(0.92 0.01 285);
+  --card: oklch(0.155 0.011 285);
+  --card-foreground: oklch(0.92 0.01 285);
+  --popover: oklch(0.155 0.011 285);
+  --popover-foreground: oklch(0.92 0.01 285);
   --primary: #ececec;
   --primary-foreground: #131316;
-  --secondary: #1b1b20;
-  --secondary-foreground: #f4f4f4;
-  --muted: #17171b;
-  --muted-foreground: #9c9ca6;
-  --accent: #1b1b20;
-  --accent-foreground: #f4f4f4;
+  --secondary: oklch(0.225 0.025 285);
+  --secondary-foreground: oklch(0.92 0.01 285);
+  --muted: oklch(0.225 0.025 285);
+  --muted-foreground: oklch(0.66 0.02 285);
+  --accent: oklch(0.225 0.025 285);
+  --accent-foreground: oklch(0.92 0.01 285);
   --destructive: #d03b3b;
   --destructive-foreground: #fafafa;
-  --border: #222228;
-  --input: #26262c;
-  --ring: #1197e2;
+  --border: oklch(0.34 0.022 285);
+  --input: oklch(0.34 0.022 285);
+  --ring: #ff4801;
 
-  --brand: #1197e2;
+  --brand: #ff8a5c;
 
-  --viz-surface: #101013;
+  --viz-surface: oklch(0.155 0.011 285);
   --ink-muted: #8b8b95;
-  --gridline: #1e1e24;
+  --gridline: oklch(0.225 0.025 285);
   --baseline: #30303a;
   --profit: #0ca30c;
   --profit-fill: #0ca30c;
